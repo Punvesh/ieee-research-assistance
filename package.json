@@ -1,0 +1,15 @@
+{
+  "name": "ieee-research-assistance",
+  "version": "1.0.0",
+  "description": "Professional website for IEEE research paper assistance services",
+  "private": true,
+  "license": "MIT",
+  "keywords": [
+    "IEEE",
+    "research",
+    "academic",
+    "paper",
+    "assistance",
+    "education"
+  ]
+}

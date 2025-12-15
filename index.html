@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="IEEE Research Paper Assistance for students and researchers. Professional guidance on literature surveys, conference papers, and journal submissions with ethical academic support.">
+    <meta name="keywords" content="IEEE paper, research assistance, academic writing, literature survey, conference paper">
+    <meta name="author" content="IEEE Research Paper Assistance">
+    <meta property="og:title" content="IEEE Research Paper Assistance for Students & Researchers">
+    <meta property="og:description" content="Professional academic support for IEEE papers from students to final researchers">
+    <meta property="og:type" content="website">
+    
+    <title>IEEE Research Paper Assistance - Student & Researcher Support</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            background-color: #ffffff;
+            color: #1f2937;
+            line-height: 1.6;
+        }
+        
+        .gradient-blur {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.1;
+        }
+        
+        .blue-accent {
+            color: #2563eb;
+        }
+        
+        .button-primary {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: white;
+            padding: 12px 32px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .button-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(37, 99, 235, 0.3);
+        }
+        
+        .button-secondary {
+            background: white;
+            color: #2563eb;
+            border: 2px solid #2563eb;
+            padding: 10px 24px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .button-secondary:hover {
+            background: #f0f9ff;
+            transform: translateY(-2px);
+        }
+        
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 28px;
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            transform: translateY(-4px);
+        }
+        
+        .service-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 16px;
+        }
+        
+        .step-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: white;
+            font-weight: 700;
+            font-size: 20px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        
+        .workflow-item {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+        
+        .workflow-content {
+            flex: 1;
+        }
+        
+        .workflow-content h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1f2937;
+        }
+        
+        .workflow-content p {
+            color: #6b7280;
+            font-size: 14px;
+        }
+        
+        .blurred-preview {
+            position: relative;
+            background: #f9fafb;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid #e5e7eb;
+            aspect-ratio: 16/9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            filter: blur(8px);
+            user-select: none;
+        }
+        
+        .watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            font-size: 20px;
+            font-weight: 700;
+            color: rgba(37, 99, 235, 0.3);
+            pointer-events: none;
+            white-space: nowrap;
+        }
+        
+        .table-preview {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Courier New', monospace;
+            color: #9ca3af;
+            font-size: 12px;
+        }
+        
+        .separator {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #e5e7eb, transparent);
+            margin: 48px 0;
+        }
+        
+        .heading-accent {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .heading-accent::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #2563eb 0%, transparent 100%);
+            border-radius: 2px;
+        }
+        
+        .form-group {
+            margin-bottom: 16px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #374151;
+            font-size: 14px;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        
+        .disclaimer {
+            background: #f8fafc;
+            border-left: 4px solid #2563eb;
+            padding: 16px;
+            border-radius: 4px;
+            font-size: 13px;
+            color: #475569;
+            line-height: 1.7;
+        }
+        
+        .trust-item {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+        
+        .trust-icon {
+            color: #2563eb;
+            font-weight: 700;
+            font-size: 20px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        
+        .trust-text {
+            color: #374151;
+            font-size: 14px;
+        }
+        
+        .success-message {
+            background: #dcfce7;
+            color: #166534;
+            padding: 12px 16px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+            display: none;
+        }
+        
+        .success-message.show {
+            display: block;
+        }
+        
+        .section-padding {
+            padding: 80px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .section-padding {
+                padding: 60px 0;
+            }
+            
+            .heading-accent::after {
+                height: 2px;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .section-padding {
+                padding: 40px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div x-data="contactForm()" class="min-h-screen bg-white">
+        <!-- Navigation -->
+        <nav class="sticky top-0 z-50 bg-white border-b border-gray-100">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">IR</span>
+                    </div>
+                    <h1 class="text-lg font-bold text-gray-900">IEEE Research</h1>
+                </div>
+                <div class="flex gap-3">
+                    <a href="#contact" class="button-secondary text-sm">Contact</a>
+                    <a href="https://wa.me/918328411028?text=Hi%20I%20need%20IEEE%20research%20paper%20assistance" target="_blank" class="button-primary text-sm">Chat Now</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="section-padding bg-gradient-to-br from-white via-white to-blue-50 relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-96 h-96 gradient-blur" style="background: #2563eb;"></div>
+            <div class="absolute bottom-0 right-0 w-96 h-96 gradient-blur" style="background: #2563eb;"></div>
+            
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="max-w-3xl">
+                    <h2 class="text-5xl md:text-6xl font-bold text-gray-900 mb-4 leading-tight">
+                        IEEE Research Paper Assistance
+                        <span class="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-700">for Students & Researchers</span>
+                    </h2>
+                    <p class="text-lg text-blue-600 font-semibold mb-6">Trusted by final-year students for project reviews, viva preparation, and plagiarism-safe submissions.</p>
+                    <p class="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed max-w-2xl">
+                        We provide structured academic support for IEEE conference and journal papers — from literature survey to final draft — with proper citations and plagiarism below 10%.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="https://wa.me/918328411028?text=Hi%20I%20need%20a%20free%20consultation%20for%20IEEE%20paper%20assistance" target="_blank" class="button-primary text-center">Check If Your Topic Is Suitable</a>
+                        <a href="#services" class="button-secondary text-center">Explore Services</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="section-padding bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-4">
+                        <span class="heading-accent">Our Services</span>
+                    </h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                        Comprehensive academic support designed for research excellence
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Service 1 -->
+                    <div class="card">
+                        <div class="service-icon">📚</div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Literature Survey</h3>
+                        <p class="text-gray-600 mb-4">Comprehensive survey with comparison tables and analytical text covering recent research (2022–2025) in your domain.</p>
+                        <a href="#contact" class="text-blue-600 font-semibold text-sm hover:text-blue-700">Learn more →</a>
+                    </div>
+
+                    <!-- Service 2 -->
+                    <div class="card">
+                        <div class="service-icon">📄</div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">IEEE Conference Paper <span class="text-blue-600 text-base font-semibold">(Final-Year Projects)</span></h3>
+                        <p class="text-gray-600 mb-4">Complete support from title and outline to final formatting, ensuring compliance with IEEE standards and conference guidelines.</p>
+                        <a href="#contact" class="text-blue-600 font-semibold text-sm hover:text-blue-700">Learn more →</a>
+                    </div>
+
+                    <!-- Service 3 -->
+                    <div class="card">
+                        <div class="service-icon">📰</div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Journal Draft Preparation <span class="text-blue-600 text-base font-semibold">(MTech / PhD)</span></h3>
+                        <p class="text-gray-600 mb-4">Professional journal manuscript preparation with structured sections, proper citations, and publication-ready formatting.</p>
+                        <a href="#contact" class="text-blue-600 font-semibold text-sm hover:text-blue-700">Learn more →</a>
+                    </div>
+
+                    <!-- Service 4 -->
+                    <div class="card">
+                        <div class="service-icon">🔬</div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Methodology & Results Guidance</h3>
+                        <p class="text-gray-600 mb-4">Expert guidance on structuring methodology sections and presenting results with performance comparisons and data visualization.</p>
+                        <a href="#contact" class="text-blue-600 font-semibold text-sm hover:text-blue-700">Learn more →</a>
+                    </div>
+
+                    <!-- Service 5 -->
+                    <div class="card">
+                        <div class="service-icon">✅</div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">IEEE Formatting & References</h3>
+                        <p class="text-gray-600 mb-4">Complete formatting audit and reference management ensuring 100% IEEE compliance and proper citation standards.</p>
+                        <a href="#contact" class="text-blue-600 font-semibold text-sm hover:text-blue-700">Learn more →</a>
+                    </div>
+
+                    <!-- Service 6 -->
+                    <div class="card">
+                        <div class="service-icon">🛡️</div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Plagiarism Reduction</h3>
+                        <p class="text-gray-600 mb-4">Comprehensive plagiarism check and reduction strategies to maintain originality and academic integrity below 10%.</p>
+                        <a href="#contact" class="text-blue-600 font-semibold text-sm hover:text-blue-700">Learn more →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="separator"></div>
+
+        <!-- Why Trust Us Section -->
+        <section class="section-padding bg-gradient-to-b from-white to-blue-50">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-4">
+                        <span class="heading-accent">Why Trust Us</span>
+                    </h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                        Academic excellence with transparency and ethical standards
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    <div class="trust-item">
+                        <div class="trust-icon">✓</div>
+                        <div>
+                            <h3 class="font-semibold text-gray-900 mb-2">Recent Literature (2022–2025)</h3>
+                            <p class="trust-text">Latest research ensuring your paper reflects current domain knowledge and recent breakthroughs, keeping you ahead academically.</p>
+                        </div>
+                    </div>
+
+                    <div class="trust-item">
+                        <div class="trust-icon">✓</div>
+                        <div>
+                            <h3 class="font-semibold text-gray-900 mb-2">AI-Reviewed Quality (8+/10 Rating)</h3>
+                            <p class="trust-text">Our literature surveys and drafts are independently reviewed by AI-based academic tools with ratings consistently above 8/10.</p>
+                        </div>
+                    </div>
+
+                    <div class="trust-item">
+                        <div class="trust-icon">✓</div>
+                        <div>
+                            <h3 class="font-semibold text-gray-900 mb-2">Student-Friendly Workflow</h3>
+                            <p class="trust-text">Designed for students and early researchers with iterative reviews, clear communication, and flexible timelines.</p>
+                        </div>
+                    </div>
+
+                    <div class="trust-item">
+                        <div class="trust-icon">✓</div>
+                        <div>
+                            <h3 class="font-semibold text-gray-900 mb-2">Ethical Academic Assistance</h3>
+                            <p class="trust-text">We guide and support your work—you remain the author. No ghostwriting, no false claims, complete transparency.</p>
+                        </div>
+                    </div>
+
+                    <div class="trust-item">
+                        <div class="trust-icon">✓</div>
+                        <div>
+                            <h3 class="font-semibold text-gray-900 mb-2">No Guaranteed Acceptance</h3>
+                            <p class="trust-text">We're honest about outcomes. Publication depends on peer review, journal criteria, and research merit—not our promises.</p>
+                        </div>
+                    </div>
+
+                    <div class="trust-item">
+                        <div class="trust-icon">✓</div>
+                        <div>
+                            <h3 class="font-semibold text-gray-900 mb-2">Plagiarism Below 10%</h3>
+                            <p class="trust-text">We ensure your paper maintains high originality standards, with plagiarism consistently below the 10% threshold.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="separator"></div>
+
+        <!-- Sample Work Section -->
+        <section class="section-padding bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-4">
+                        <span class="heading-accent">Sample Work Preview</span>
+                    </h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-4">
+                        See examples of the quality and structure we deliver
+                    </p>
+                    <div class="inline-block bg-blue-50 border border-blue-200 px-4 py-2 rounded-full">
+                        <p class="text-blue-700 text-sm font-semibold">For Academic Review Only – Watermarked</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Sample 1: Literature Survey Table -->
+                    <div class="card">
+                        <div class="relative mb-4">
+                            <div class="blurred-preview">
+                                <div class="table-preview">
+                                    Literature Survey Comparison
+                                </div>
+                                <div class="watermark">SAMPLE</div>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Literature Survey Comparison</h3>
+                        <p class="text-gray-600 text-sm mb-4">Structured comparison table with papers, methodologies, and findings analysis.</p>
+                        <div class="bg-gray-50 px-3 py-2 rounded text-xs text-gray-600">
+                            <span class="font-semibold">Includes:</span> Author, Year, Method, Results, Citations
+                        </div>
+                    </div>
+
+                    <!-- Sample 2: Results Table -->
+                    <div class="card">
+                        <div class="relative mb-4">
+                            <div class="blurred-preview">
+                                <div class="table-preview">
+                                    Performance Results & Metrics
+                                </div>
+                                <div class="watermark">SAMPLE</div>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Results & Performance Metrics</h3>
+                        <p class="text-gray-600 text-sm mb-4">Comparison tables with accuracy, F1-score, and performance benchmarks.</p>
+                        <div class="bg-gray-50 px-3 py-2 rounded text-xs text-gray-600">
+                            <span class="font-semibold">Includes:</span> Methods, Metrics, Results, Statistical Significance
+                        </div>
+                    </div>
+
+                    <!-- Sample 3: References -->
+                    <div class="card">
+                        <div class="relative mb-4">
+                            <div class="blurred-preview">
+                                <div class="table-preview">
+                                    IEEE-Style Reference List
+                                </div>
+                                <div class="watermark">SAMPLE</div>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">IEEE-Style Reference List</h3>
+                        <p class="text-gray-600 text-sm mb-4">Properly formatted references with correct IEEE citation standards and DOI links.</p>
+                        <div class="bg-gray-50 px-3 py-2 rounded text-xs text-gray-600">
+                            <span class="font-semibold">Includes:</span> Journal articles, Conferences, Books, Online sources
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-12 p-6 bg-blue-50 border border-blue-200 rounded-lg text-center">
+                    <p class="text-gray-700 text-sm">
+                        <span class="font-semibold text-blue-900">📌 Watermark Notice:</span> All samples are blurred and watermarked to protect academic integrity. Full samples are shared post-consultation.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="separator"></div>
+
+        <!-- Workflow Section -->
+        <section class="section-padding bg-gradient-to-br from-white via-blue-50 to-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-4">
+                        <span class="heading-accent">Our Workflow</span>
+                    </h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                        A structured, transparent process from consultation to delivery
+                    </p>
+                </div>
+
+                <div class="max-w-3xl mx-auto space-y-12">
+                    <!-- Step 1 -->
+                    <div class="workflow-item">
+                        <div class="step-number">1</div>
+                        <div class="workflow-content">
+                            <h3>Requirement Discussion</h3>
+                            <p>We understand your research domain, paper scope, target conference/journal, timeline, and specific requirements in a detailed consultation call.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="workflow-item">
+                        <div class="step-number">2</div>
+                        <div class="workflow-content">
+                            <h3>Title & Outline Support</h3>
+                            <p>We develop compelling research titles and structured outlines ensuring your paper is publication-ready from the start with clear section planning.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="workflow-item">
+                        <div class="step-number">3</div>
+                        <div class="workflow-content">
+                            <h3>Literature Survey</h3>
+                            <p>Comprehensive literature review with comparison tables, critical analysis, and recent research (2022–2025) synthesis providing strong foundation.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="workflow-item">
+                        <div class="step-number">4</div>
+                        <div class="workflow-content">
+                            <h3>Draft Preparation</h3>
+                            <p>We support methodology, results, and conclusion sections ensuring logical flow, clarity, and proper academic language throughout.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 5 -->
+                    <div class="workflow-item">
+                        <div class="step-number">5</div>
+                        <div class="workflow-content">
+                            <h3>Review & Refinement</h3>
+                            <p>Iterative reviews with plagiarism checking, IEEE formatting audit, reference verification, and content refinement ensuring publication readiness.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 6 -->
+                    <div class="workflow-item">
+                        <div class="step-number">6</div>
+                        <div class="workflow-content">
+                            <h3>Final Delivery</h3>
+                            <p>Complete manuscript delivery with all supporting documents, plagiarism reports, formatting checklist, and post-submission guidance.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-16 p-8 bg-gray-50 border border-gray-200 rounded-lg">
+                    <p class="text-center text-gray-700">
+                        <span class="font-semibold text-gray-900">⏱️ Timeline Flexibility:</span> Projects typically take 2–8 weeks depending on scope and deadline. Expedited support available on request.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="separator"></div>
+
+        <!-- Pricing Section -->
+        <section class="section-padding bg-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">
+                    <span class="heading-accent">Pricing</span>
+                </h2>
+                <div class="card max-w-2xl mx-auto">
+                    <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                        Affordable, student-friendly pricing based on scope and deadline.
+                    </p>
+                    <p class="text-blue-600 font-semibold text-base mb-4">
+                        Most final-year projects fall within a student-friendly range, depending on scope and deadline.
+                    </p>
+                    <p class="text-gray-600 mb-8">
+                        Every project is unique. We offer customized quotes covering literature surveys, conference papers, journal submissions, and revision support.
+                    </p>
+                    <div class="space-y-3 mb-8">
+                        <div class="flex items-start gap-3 justify-center">
+                            <span class="text-blue-600 font-bold">→</span>
+                            <span class="text-gray-700">Literature Survey: Starting from student-friendly rates</span>
+                        </div>
+                        <div class="flex items-start gap-3 justify-center">
+                            <span class="text-blue-600 font-bold">→</span>
+                            <span class="text-gray-700">Conference Papers: Flexible pricing by page count and deadline</span>
+                        </div>
+                        <div class="flex items-start gap-3 justify-center">
+                            <span class="text-blue-600 font-bold">→</span>
+                            <span class="text-gray-700">Journal Drafts: Comprehensive packages for multiple revisions</span>
+                        </div>
+                        <div class="flex items-start gap-3 justify-center">
+                            <span class="text-blue-600 font-bold">→</span>
+                            <span class="text-gray-700">Revision Support: Hourly or per-revision rates available</span>
+                        </div>
+                    </div>
+                    <a href="#contact" class="button-primary">Get a Custom Quote</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="separator"></div>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section-padding bg-gradient-to-b from-white to-blue-50">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-4">
+                        <span class="heading-accent">Get Started Today</span>
+                    </h2>
+                    <p class="text-lg text-gray-600">
+                        Reach out for a free consultation. We'll discuss your research needs and provide personalized guidance.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                    <!-- Quick Contact Options -->
+                    <div class="space-y-4">
+                        <h3 class="text-xl font-bold text-gray-900 mb-6">Contact Methods</h3>
+                        
+                        <a href="https://wa.me/918328411028?text=Hi%20I%20would%20like%20to%20discuss%20my%20research%20paper%20needs" target="_blank" class="flex items-center gap-4 p-4 card hover:border-blue-300 hover:bg-blue-50">
+                            <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-xl flex-shrink-0">💬</div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">WhatsApp</h4>
+                                <p class="text-sm text-gray-600">Click to chat on WhatsApp (Recommended)</p>
+                            </div>
+                        </a>
+
+                        <a href="mailto:punvesh18@gmail.com" class="flex items-center gap-4 p-4 card hover:border-blue-300 hover:bg-blue-50">
+                            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-xl flex-shrink-0">📧</div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Email</h4>
+                                <p class="text-sm text-gray-600">punvesh18@gmail.com</p>
+                            </div>
+                        </a>
+
+                        <div class="p-4 card bg-gray-50">
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center text-xl flex-shrink-0">⏰</div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900">Response Time</h4>
+                                    <p class="text-sm text-gray-600">WhatsApp: Within 2 hours | Email: Within 24 hours</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="card">
+                        <h3 class="text-xl font-bold text-gray-900 mb-6">Send a Message</h3>
+                        
+                        <div class="success-message" :class="{ 'show': formSubmitted }">
+                            ✓ Thank you! We'll respond within 24 hours.
+                        </div>
+
+                        <form @submit.prevent="submitForm" class="space-y-4">
+                            <div class="form-group">
+                                <label for="name">Your Name *</label>
+                                <input type="text" id="name" x-model="form.name" placeholder="John Doe" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" x-model="form.email" placeholder="you@example.com" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="domain">Research Domain *</label>
+                                <select id="domain" x-model="form.domain" required>
+                                    <option value="">Select your domain...</option>
+                                    <option value="AI/ML">AI & Machine Learning</option>
+                                    <option value="Healthcare">Healthcare & Biomedical</option>
+                                    <option value="IoT">IoT & Embedded Systems</option>
+                                    <option value="Cloud">Cloud Computing & Security</option>
+                                    <option value="Data Science">Data Science & Analytics</option>
+                                    <option value="NLP">Natural Language Processing</option>
+                                    <option value="CV">Computer Vision</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="deadline">Desired Deadline *</label>
+                                <input type="text" id="deadline" x-model="form.deadline" placeholder="e.g., 30 days, 2 months" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Additional Details</label>
+                                <textarea id="message" x-model="form.message" placeholder="Tell us about your research..."></textarea>
+                            </div>
+
+                            <button type="submit" class="button-primary w-full">Send Message</button>
+                            <p class="text-xs text-gray-500 text-center">We'll contact you within 24 hours</p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="separator"></div>
+
+        <!-- Disclaimer Section -->
+        <section class="section-padding bg-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">
+                    <span class="heading-accent">Important Disclaimer</span>
+                </h2>
+                
+                <div class="disclaimer">
+                    <p class="font-semibold text-gray-900 mb-3">Academic Assistance & Guidance Only</p>
+                    <p class="mb-3">
+                        We provide academic guidance, research assistance, and writing support. We do not write papers for submission by someone other than the actual researcher. All work must be understood, reviewed, and approved by the person submitting it.
+                    </p>
+                    <p class="mb-3">
+                        <span class="font-semibold">Final responsibility for submission and authorship</span> rests entirely with the student/researcher. You are accountable for ensuring the work meets your institution's academic integrity policies and that you are the rightful author of the submission.
+                    </p>
+                    <p class="mb-3">
+                        <span class="font-semibold">No guaranteed acceptance or publication claims</span> are made. Publication success depends on peer review, journal criteria, research merit, and market conditions—not on our services. We support your work's quality but cannot guarantee conference or journal acceptance.
+                    </p>
+                    <p>
+                        <span class="font-semibold">By using our services,</span> you agree to use this assistance ethically and in compliance with your institution's academic integrity guidelines, IEEE standards, and relevant academic policies.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-gray-900 text-gray-400 py-12">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                    <div>
+                        <div class="flex items-center gap-2 mb-4">
+                            <div class="w-6 h-6 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg"></div>
+                            <span class="text-white font-bold">IEEE Research</span>
+                        </div>
+                        <p class="text-sm">Academic assistance and research support for students and researchers.</p>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-semibold mb-4">Services</h4>
+                        <ul class="space-y-2 text-sm">
+                            <li><a href="#services" class="hover:text-white transition">Literature Survey</a></li>
+                            <li><a href="#services" class="hover:text-white transition">Conference Papers</a></li>
+                            <li><a href="#services" class="hover:text-white transition">Journal Drafts</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-semibold mb-4">Connect</h4>
+                        <ul class="space-y-2 text-sm">
+                            <li><a href="https://wa.me/918328411028" class="hover:text-white transition">WhatsApp</a></li>
+                            <li><a href="mailto:punvesh18@gmail.com" class="hover:text-white transition">Email</a></li>
+                            <li><a href="#contact" class="hover:text-white transition">Contact Form</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="border-t border-gray-800 pt-8">
+                    <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                        <p class="text-sm">
+                            <span class="font-semibold">🎓 Academic Assistance Only</span> — Not affiliated with IEEE. Research support for students and early researchers.
+                        </p>
+                        <p class="text-xs text-gray-500">
+                            © 2024 IEEE Research Paper Assistance. All rights reserved.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Alpine.js Scripts -->
+    <script>
+        function contactForm() {
+            return {
+                form: {
+                    name: '',
+                    email: '',
+                    domain: '',
+                    deadline: '',
+                    message: ''
+                },
+                formSubmitted: false,
+                
+                async submitForm() {
+                    // Validate form
+                    if (!this.form.name || !this.form.email || !this.form.domain || !this.form.deadline) {
+                        alert('Please fill in all required fields');
+                        return;
+                    }
+
+                    // Show success message
+                    this.formSubmitted = true;
+                    
+                    // Log form data (for backend integration)
+                    console.log('Form submitted:', this.form);
+                    
+                    // Create WhatsApp message with form data
+                    const formDetails = `Name: ${this.form.name}\nEmail: ${this.form.email}\nDomain: ${this.form.domain}\nDeadline: ${this.form.deadline}\nDetails: ${this.form.message || 'None'}`;
+                    const whatsappMessage = `Hi! I'm interested in IEEE research paper assistance.\n\n${formDetails}`;
+                    const whatsappUrl = `https://wa.me/918328411028?text=${encodeURIComponent(whatsappMessage)}`;
+                    
+                    // Redirect to WhatsApp
+                    window.open(whatsappUrl, '_blank');
+                    
+                    // Reset form after 2 seconds
+                    setTimeout(() => {
+                        this.form = {
+                            name: '',
+                            email: '',
+                            domain: '',
+                            deadline: '',
+                            message: ''
+                        };
+                        this.formSubmitted = false;
+                    }, 2000);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
